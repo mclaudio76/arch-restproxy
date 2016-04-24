@@ -28,9 +28,9 @@ import com.sample.exceptions.RESTApplicationServiceException;
 public class RESTApplicationServiceExceptionHandler implements ExceptionMapper<RESTApplicationServiceException>  {
 	@Override
 	public Response toResponse(RESTApplicationServiceException ex) {
-		  Gson gson = new Gson();
-		  String json = gson.toJson(ex);
-		  System.err.println(" A RESTService method returned an exception --> "+ex.getMessage()+" of type "+ex.getActualException());
-		  return Response.serverError().entity(json).type(MediaType.APPLICATION_JSON).build();
+	  Gson gson = new Gson();
+	  String json = gson.toJson(ex);
+	  System.err.println(" A RESTService method returned an exception --> "+ex.getMessage()+" of type "+ex.getActualException());
+	  return Response.serverError().entity(json).type(MediaType.APPLICATION_JSON).build();
 	}
 }
