@@ -16,7 +16,18 @@ public class Main {
 	 * 
 	 * Entry point. Uses JAXRSClientFactory to dynamically create a java proxy to invoke REST-exposed methods of
 	 * ICustomer service. To deal with "complex" data objects like Customer, we need to add JacksonJaxbJsonProvider 
-	 * as marshaling/unmarshaling provider.
+	 * as marshaling/unmarshaling JSON provider.
+	 * Moreover, we want to deal directly with custom exceptions like CustomerServiceException. To do this, we need
+	 * to configure a custom Exception handler like ClientExceptionHandler.
+	 * 
+	 * In this example, we created a simple hierarchy of Exceptions which root is RESTApplicationServiceException.
+	 * ClientExceptionHandler can handle RESTApplicationServiceException and its subclasses.
+	 * 
+	 * If we don't define an Exception Handler, exceptions thrown by the application server would be treated as 
+	 * HTTP 500 Internal server errors - that's not what we want to deal with.
+	 * 
+	 * Client Exception Handler has its own counterpart on server side - have a look at RESTApplicationServiceExceptionHandler
+	 * class. 
 	 */
 	
 	public static void main(String[] args) {
