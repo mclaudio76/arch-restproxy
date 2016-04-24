@@ -12,6 +12,13 @@ import com.sample.interfaces.ICustomerService;
 
 public class Main {
 
+	/****
+	 * 
+	 * Entry point. Uses JAXRSClientFactory to dynamically create a java proxy to invoke REST-exposed methods of
+	 * ICustomer service. To deal with "complex" data objects like Customer, we need to add JacksonJaxbJsonProvider 
+	 * as marshaling/unmarshaling provider.
+	 */
+	
 	public static void main(String[] args) {
 		String url = "http://localhost:8080/RESTProxyServerWeb/services/";
 		List<Object> providers = new ArrayList<Object>();
