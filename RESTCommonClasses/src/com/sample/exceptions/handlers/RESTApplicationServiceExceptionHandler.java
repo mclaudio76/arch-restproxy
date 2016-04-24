@@ -19,6 +19,9 @@ import com.sample.exceptions.RESTApplicationServiceException;
  * 
  * A less simplistic approach would provide a mean to trace the stack trace of thrown exceptions.
  * 
+ * Basically speaking, this class handle and internal exception (of the type or subtype it's declared to handle)
+ * and convert it into a REST Response object. Resulting response is marked as server error; the proxy will receive
+ * an HTTP error and the JSON-serialized exception as entity to be consumed.
  */
 
 @Provider
