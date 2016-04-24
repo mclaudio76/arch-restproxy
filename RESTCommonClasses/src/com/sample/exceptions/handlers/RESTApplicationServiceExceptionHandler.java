@@ -9,13 +9,16 @@ import com.google.gson.Gson;
 import com.sample.exceptions.RESTApplicationServiceException;
 
 /****
- * This class is needed to intercept business-logic exceptions, and to avoid
- * Wildfly to handle them by simply logging stacktrace on System.err.
- * 
- * This class simply wraps into a JSON response the exception message. A better implementation
- * should analyze stacktrace and report it to caller.
- * 
+ * We need to define an ExceptionMapper to deal with custom exceptions thrown by EJB methods exposed as
+ * REST services. Otherwise, application server will treat them as regular exceptions (logging them on System.err
+ * and, more important, not propagating them to the client). 
  *
+ * To avoid to implement an ExceptionMapper for any custom exception, we define a simple hierarchy of exceptions,
+ * whose root is RESTApplicationServiceException. We may have used WebApplicationException as well, but that's a
+ * RuntimeException and it causes Wildfly to log on SystemErr, no matter if we defined an ExceptionMapper.
+ * 
+ * A less simplistic approach would provide a mean to trace the stack trace of thrown exceptions.
+ * 
  */
 
 @Provider
